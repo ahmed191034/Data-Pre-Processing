@@ -1,0 +1,29 @@
+# Boston Housing — Data Preprocessing Pipeline
+
+A focused preprocessing walkthrough for the classic Boston Housing dataset — the step before modeling, done properly: EDA, correlation analysis, outlier handling, binning, one-hot encoding, and a data-driven scaling decision (normalize vs. standardize per column, based on each feature's actual distribution rather than applying one scaler to everything).
+
+**Tools:** Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn (`MinMaxScaler`, `StandardScaler`)
+
+---
+
+## What's in the Notebook
+
+1. **EDA** — shape, dtypes, missingness check (506 rows, no missing values), summary statistics.
+2. **Correlation analysis** — full correlation heatmap against the target (`MEDV`, median home value), then a closer look at the three strongest predictors (`RM`, `LSTAT`, `PTRATIO`) via scatter plots.
+3. **Outlier and distribution checks** — binning skewed columns (`CRIM`, `ZN`, `B`) before encoding rather than feeding raw skewed values into the model.
+4. **One-hot encoding** of the binned categorical columns.
+5. **Scaling decision** — histograms of every column are used to decide, per-feature, whether to normalize (`MinMaxScaler`) or standardize (`StandardScaler`): most columns are normalized, but `RM` (the one roughly normally-distributed feature) is standardized instead of defaulting to a single scaler for the whole dataframe.
+
+## Known Issues (kept visible rather than silently fixed)
+
+- The notebook was originally written for **Google Colab** — it starts with `drive.mount('/content/drive')` and reads the CSV from a Google Drive path. To run it locally, replace that cell with a plain `pd.read_csv('boston.csv')` pointing at a local copy of the dataset.
+- One cell (checking which high-correlation features to inspect further) is an incomplete code comment rather than runnable code — it's a leftover from working through the analysis interactively and needs a couple of lines filled in to re-run end-to-end. Flagged here rather than hidden.
+
+## Relationship to the Boston Housing Regression Repo
+
+This repo is deliberately scoped to **preprocessing only** — it doesn't train a model. The from-scratch linear regression on this same dataset lives in a separate repo; this one is the "get the data model-ready" half of that work, kept separate since preprocessing decisions (binning, encoding, per-column scaling) are worth showing on their own.
+
+## Contact
+
+**Muhammad Ahmed Jawaid**
+[LinkedIn](https://www.linkedin.com/in/m-ahmed-jawaid-416662253/) · ahmedjawaid513@outlook.com
